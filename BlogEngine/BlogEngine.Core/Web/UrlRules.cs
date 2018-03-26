@@ -310,7 +310,10 @@ namespace BlogEngine.Core.Web
             {
                 string newUrl = url.Replace("Default.aspx", "default.aspx");  // fixes a casing oddity on Mono
                 int defaultStart = url.IndexOf("default.aspx", StringComparison.OrdinalIgnoreCase);
-                url = Utils.ApplicationRelativeWebRoot + url.Substring(defaultStart);
+                if (defaultStart >= 0)
+                {
+                    url = Utils.ApplicationRelativeWebRoot + url.Substring(defaultStart);
+                }
             }
 
             //if (string.IsNullOrEmpty(BlogConfig.FileExtension) && url.Contains("page="))
